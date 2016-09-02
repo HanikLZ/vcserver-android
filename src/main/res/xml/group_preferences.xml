@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/base_info">
+        <EditTextPreference
+            android:key="id"
+            android:persistent="false"
+            android:title="@string/group_name"
+            android:inputType="text"
+            android:summary="@string/group_name_summary"/>
+        <EditTextPreference
+            android:key="name"
+            android:persistent="false"
+            android:title="@string/group_alias_name"
+            android:inputType="text"
+            android:summary="@string/group_alias_name_summary"/>
+        <EditTextPreference
+            android:key="description"
+            android:persistent="false"
+            android:title="@string/description"
+            android:inputType="text"
+            android:summary="@string/description_summary"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="users"
+        android:title="@string/group_members">
+        <MultiSelectListPreference
+            android:key="edit"
+            android:order="999999"
+            android:title="@string/edit_group_members"
+            android:persistent="false" />
+    </PreferenceCategory>
+</PreferenceScreen>
+

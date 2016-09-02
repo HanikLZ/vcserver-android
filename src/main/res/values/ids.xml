@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="list_item_type_header"/>
+    <item type="id" name="list_item_type_footer"/>
+    <item type="id" name="list_item_type_data"/>
+</resources>
+

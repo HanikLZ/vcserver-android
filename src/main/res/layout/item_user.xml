@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+        <variable name="vm" type="org.mdvsc.vcserver.gui.user.UserListViewHolder"/>
+    </data>
+
+    <RelativeLayout
+        android:paddingLeft="@dimen/list_item_horizontal_padding"
+        android:paddingRight="@dimen/list_item_horizontal_padding"
+        android:minHeight="?listPreferredItemHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:id="@+id/linear_layout_icon"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/icon_is_admin"
+                android:scaleType="centerInside"
+                android:visibility="@{vm.isAdmin ?  View.VISIBLE : View.INVISIBLE}"
+                android:padding="@dimen/icon_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:src="@drawable/icon_password_enabled"
+                android:scaleType="centerInside"
+                android:padding="@dimen/icon_padding"
+                android:visibility="@{vm.passwordEnabled ?  View.VISIBLE : View.INVISIBLE}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@+id/linear_layout_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                tools:text="张三"
+                android:textSize="@dimen/body_text_1_size"
+                android:text="@{vm.name}"
+                android:textColor="@color/bodyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                tools:text="这里是描述"
+                android:visibility="@{TextUtils.isEmpty(vm.description) ? View.GONE : View.VISIBLE}"
+                android:layout_marginTop="@dimen/list_item_vertical_space"
+                android:textSize="@dimen/caption_text_size"
+                android:text="@{vm.description}"
+                android:textColor="@color/captionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

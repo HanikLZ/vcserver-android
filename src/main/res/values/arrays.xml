@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="autoStartEntries">
+        <item>@string/disable_auto_start</item>
+        <item>@string/follow_system_boot</item>
+        <item>@string/when_wifi_on</item>
+        <item>@string/when_wifi_hotspot</item>
+    </string-array>
+
+    <string-array name="autoStartValues">
+        <item>@string/value_disable_auto_start</item>
+        <item>@string/value_follow_system_boot</item>
+        <item>@string/value_when_wifi_on</item>
+        <item>@string/value_when_wifi_hotspot</item>
+    </string-array>
+</resources>
+

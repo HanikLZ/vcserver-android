@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/rules">
+        <EditTextPreference
+            android:inputType="textUri"
+            android:key="branch"
+            android:persistent="false"
+            android:summary="@string/branch_match_summary"
+            android:title="@string/branch_match"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="readable"
+            android:persistent="false"
+            android:summary="@string/readable_summary"
+            android:title="@string/readable"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="writable"
+            android:persistent="false"
+            android:summary="@string/writable_summary"
+            android:title="@string/writable"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:dependency="writable"
+            android:key="pushable"
+            android:persistent="false"
+            android:summary="@string/pushable_summary"
+            android:title="@string/pushable"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="creatable"
+            android:persistent="false"
+            android:summary="@string/creatable_summary"
+            android:title="@string/creatable"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="deletable"
+            android:persistent="false"
+            android:summary="@string/deletable_summary"
+            android:title="@string/deletable"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/targets">
+        <MultiSelectListPreference
+            android:key="groups"
+            android:persistent="false"
+            android:summary="@string/applied_groups_summary"
+            android:title="@string/applied_groups"/>
+        <MultiSelectListPreference
+            android:key="users"
+            android:persistent="false"
+            android:summary="@string/applied_users_summary"
+            android:title="@string/applied_users"/>
+        <MultiSelectListPreference
+            android:key="excludeUsers"
+            android:persistent="false"
+            android:summary="@string/excluded_users_summary"
+            android:title="@string/excluded_users"/>
+    </PreferenceCategory>
+</PreferenceScreen>
+

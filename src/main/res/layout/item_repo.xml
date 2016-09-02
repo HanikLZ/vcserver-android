@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="org.mdvsc.vcserver.gui.repo.RepoListViewHolder"/>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/list_item_horizontal_padding"
+        android:paddingRight="@dimen/list_item_horizontal_padding"
+        android:minHeight="?listPreferredItemHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            tools:text="library/test.git"
+            android:text="@{vm.name}"
+            android:textSize="@dimen/body_text_1_size"
+            android:textColor="@color/bodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            tools:text="ssh://[user]@10.0.0.1:55555/library/test.git"
+            android:layout_marginTop="@dimen/list_item_vertical_space"
+            android:text="@{vm.url}"
+            android:textColor="@color/captionText"
+            android:textSize="@dimen/caption_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            tools:text="这里是描述"
+            android:visibility="@{TextUtils.isEmpty(vm.description) ? View.GONE : View.VISIBLE}"
+            android:layout_marginTop="@dimen/list_item_vertical_space"
+            android:textSize="@dimen/caption_text_size"
+            android:textColor="@color/captionText"
+            android:text="@{vm.description}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</layout>

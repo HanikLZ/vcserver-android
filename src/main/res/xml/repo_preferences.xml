@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/base_info">
+        <EditTextPreference
+            android:key="path"
+            android:persistent="false"
+            android:title="@string/repo_path"
+            android:inputType="textUri"
+            android:summary="@string/repo_path_summary"/>
+        <EditTextPreference
+            android:key="name"
+            android:persistent="false"
+            android:title="@string/repo_name"
+            android:inputType="text"
+            android:summary="@string/repo_name_summary"/>
+        <EditTextPreference
+            android:key="description"
+            android:persistent="false"
+            android:title="@string/description"
+            android:inputType="text"
+            android:summary="@string/description_summary"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="permissions"
+        android:title="@string/permissions">
+        <Preference
+            android:key="addPermission"
+            android:order="99999"
+            android:title="@string/new_permission"
+            android:persistent="false"/>
+    </PreferenceCategory>
+</PreferenceScreen>
+

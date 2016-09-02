@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_repos"
+        android:title="@string/repo_manager"
+        android:icon="@drawable/icon_repos"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_users"
+        android:title="@string/user_manager"
+        android:icon="@drawable/icon_users"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/preferences"
+        android:icon="@drawable/icon_settings"
+        app:showAsAction="ifRoom"/>
+</menu>

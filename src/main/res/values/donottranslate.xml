@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">VCGitServer</string>
+    <string name="app_email" translatable="false">haniklz@gmail.com</string>
+    <string name="app_init" translatable="false">init</string>
+    <string name="value_disable_auto_start" translatable="false">disable_auto_start</string>
+    <string name="value_follow_system_boot" translatable="false">follow_system_boot</string>
+    <string name="value_when_wifi_on" translatable="false">when_wifi_on</string>
+    <string name="value_when_wifi_hotspot" translatable="false">when_wifi_hotspot</string>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/server_config">
+        <Preference
+            android:key="workPath"
+            android:title="@string/work_path"
+            android:inputType="textUri"
+            android:summary="@string/work_path_summary"/>
+        <EditTextPreference
+            android:key="port"
+            android:title="@string/listening_port"
+            android:inputType="number"
+            android:summary="@string/listening_port_summary"/>
+        <ListPreference
+            android:key="autoStartOn"
+            android:persistent="true"
+            android:entries="@array/autoStartEntries"
+            android:entryValues="@array/autoStartValues"
+            android:defaultValue="disable_auto_start"
+            android:title="@string/auto_start"
+            android:summary="@string/auto_start_summary"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/security_setting">
+        <SwitchPreference
+            android:key="enablePasswordLogin"
+            android:title="@string/password_protection"
+            android:defaultValue="false"
+            android:summary="@string/password_protection_summary"/>
+        <EditTextPreference
+            android:key="adminPassword"
+            android:dependency="enablePasswordLogin"
+            android:title="@string/manager_password"
+            android:summary="@string/manager_password_summary"
+            android:inputType="textPassword"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/new_repo">
+        <EditTextPreference
+            android:key="repoInitName"
+            android:title="@string/init_username"
+            android:summary="@string/init_username_summary"
+            android:inputType="text"/>
+        <EditTextPreference
+            android:key="repoInitEmail"
+            android:title="@string/init_email"
+            android:summary="@string/init_email_summary"
+            android:inputType="text"/>
+        <EditTextPreference
+            android:key="repoInitCommit"
+            android:title="@string/init_commit_message"
+            android:summary="@string/init_commit_message_summary"
+            android:inputType="text"/>
+        <EditTextPreference
+            android:key="repoInitReadme"
+            android:persistent="false"
+            android:title="@string/readme_content"
+            android:summary="@string/readme_content_summary"
+            android:inputType="text"/>
+        <EditTextPreference
+            android:key="repoInitIgnore"
+            android:persistent="false"
+            android:title="@string/gitignore_content"
+            android:summary="@string/gitignore_content_summary"
+            android:inputType="text"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/info">
+        <Preference
+            android:enabled="false"
+            android:key="about"
+            android:persistent="false"
+            android:title="@string/version"
+            android:summary="1.0.0"/>
+    </PreferenceCategory>
+</PreferenceScreen>
+

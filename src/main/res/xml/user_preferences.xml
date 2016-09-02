@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/base_info">
+        <EditTextPreference
+            android:key="id"
+            android:persistent="false"
+            android:title="@string/username"
+            android:inputType="text"
+            android:summary="@string/username_summary"/>
+        <EditTextPreference
+            android:key="name"
+            android:persistent="false"
+            android:title="@string/user_alias_name"
+            android:inputType="text"
+            android:summary="@string/user_alias_name_summary"/>
+        <EditTextPreference
+            android:key="description"
+            android:persistent="false"
+            android:title="@string/description"
+            android:inputType="text"
+            android:summary="@string/description_summary"/>
+        <EditTextPreference
+            android:key="email"
+            android:persistent="false"
+            android:title="@string/email"
+            android:inputType="textEmailAddress"
+            android:summary="@string/email_summary"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/permissions">
+        <SwitchPreferenceCompat
+            android:key="isAdmin"
+            android:persistent="false"
+            android:title="@string/is_admin"
+            android:defaultValue="false"
+            android:summary="@string/is_admin_summary"/>
+        <SwitchPreferenceCompat
+            android:key="enablePassword"
+            android:persistent="false"
+            android:title="@string/password_auth"
+            android:defaultValue="false"
+            android:summary="@string/password_auth_summary"/>
+        <EditTextPreference
+            android:key="password"
+            android:persistent="false"
+            android:dependency="enablePassword"
+            android:title="@string/password"
+            android:inputType="textPassword"
+            android:summary="@string/password_summary"/>
+        <EditTextPreference
+            android:key="key"
+            android:persistent="false"
+            android:title="@string/credential"
+            android:inputType="text"
+            android:summary="@string/credential_summary"/>
+    </PreferenceCategory>
+</PreferenceScreen>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="org.mdvsc.vcserver.gui.user.group.GroupListViewHolder"/>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/list_item_horizontal_padding"
+        android:paddingRight="@dimen/list_item_horizontal_padding"
+        android:minHeight="?listPreferredItemHeight"
+        android:gravity="center_vertical">
+        <TextView
+            tools:text="library/test.git"
+            android:text="@{vm.name}"
+            android:textColor="@color/bodyText"
+            android:textSize="@dimen/body_text_1_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            tools:text="这里是描述"
+            android:visibility="@{TextUtils.isEmpty(vm.description) ? View.GONE : View.VISIBLE}"
+            android:layout_marginTop="@dimen/list_item_vertical_space"
+            android:text="@{vm.description}"
+            android:textColor="@color/captionText"
+            android:textSize="@dimen/caption_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</layout>
+
