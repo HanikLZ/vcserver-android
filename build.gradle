@@ -2,18 +2,24 @@
 buildscript {
 
     ext {
-        KOTLIN_VERSION = '1.0.3-eap-30'
-        ANDROID_GRADLE_VERSION = '2.2.0-alpha3'
-        ANDROID_SUPPORT_VERSION = '24.0.0-beta1'
-        DAGGER_VERSION = '2.4'
-        GSON_VERSION = '2.6.2'
+        BUILD_TOOLS_VERSION = '26.0.0-rc1'
+        COMPILE_SDK_VERSION = 25
+        MIN_SDK_VERSION = 14
+        TARGET_SDK_VERSON = 25
+        KOTLIN_VERSION = '1.1.2-3'
+        ANDROID_GRADLE_VERSION = '2.3.0'
+        ANDROID_SUPPORT_VERSION = '25.3.1'
+        DAGGER_VERSION = '2.11-rc2'
+        GSON_VERSION = '2.8.0'
+        SLF4J_ANDROID_VERSION = '1.7.19'
+        EVENT_BUS_VERSION = '3.0.0'
+        DIRCHOOSER_VERSION = '3.2'
     }
 
     repositories {
-        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
         mavenCentral()
         jcenter()
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
 
     dependencies {
@@ -22,45 +28,9 @@ buildscript {
     }
 }
 
-allprojects {
-    project.ext {
-        COMPILE_SDK_VERSION = 23
-        BUILD_TOOLS_VERSION = '24.0.0 rc4'
-        MIN_SDK_VERSION = 14
-        TARGET_SDK_VERSON = 23
-    }
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-    }
-}
-
-subprojects {
-    apply plugin: 'com.android.lib'
-    apply plugin: 'kotlin-android'
-
-    android {
-        compileSdkVersion COMPILE_SDK_VERSION
-        buildToolsVersion BUILD_TOOLS_VERSION
-
-        sourceSets {
-            main {
-                java.srcDirs += 'src/main/kotlin'
-                jniLibs.srcDirs = ['libs']
-            }
-        }
-
-        dependencies {
-            compile fileTree(dir: 'libs', include: ['*.jar'])
-            compile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
-        }
-    }
-}
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -73,8 +43,41 @@ android {
 
     defaultConfig {
         applicationId "org.mdvsc.vcserver"
+        versionCode 1
+        versionName '1.0.0'
         minSdkVersion MIN_SDK_VERSION
         targetSdkVersion TARGET_SDK_VERSON
+    }
+
+    signingConfigs {
+
+        release {
+
+            Properties properties = new Properties()
+            try {
+                properties.load(project.rootProject.file('local.properties').newDataInputStream())
+            } catch (Exception ignored) {
+                println('cannot find local.properties.')
+            }
+            String keystoreFileProperty = properties.getProperty('KEYSTORE')
+            String keystorePasswordProperty = properties.getProperty('KEYSTORE_PASSWORD')
+            String keyAliasProperty = properties.getProperty('KEY_ALIAS')
+            String keyPasswordProperty = properties.getProperty('KEY_PASSWORD')
+
+            keystoreFileProperty = keystoreFileProperty == null ? System.getenv('KEYSTORE') : keystoreFileProperty
+            keystorePasswordProperty = keystorePasswordProperty == null ? System.getenv('KEYSTORE_PASSWORD') : keystorePasswordProperty
+            keyAliasProperty = keyAliasProperty == null ? System.getenv('KEY_ALIAS') : keyAliasProperty
+            keyPasswordProperty = keyPasswordProperty == null ? System.getenv('KEY_PASSWORD') : keyPasswordProperty
+
+            if (keystoreFileProperty != null) {
+                storeFile file(keystoreFileProperty)
+                storePassword keystorePasswordProperty
+                keyAlias keyAliasProperty
+                keyPassword keyPasswordProperty
+            }
+
+        }
+
     }
 
     buildTypes {
@@ -110,8 +113,10 @@ android {
     }
 }
 
-kapt {
-    generateStubs = true
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -119,15 +124,10 @@ dependencies {
     compile 'org.apache.sshd:sshd-core:0.14.0'
     compile 'org.apache.mina:mina-core:2.0.13'
     compile 'org.eclipse.jgit:org.eclipse.jgit:3.7.1.201504261725-r'
-    compile 'org.slf4j:slf4j-android:1.7.19'
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'net.rdrei.android.dirchooser:library:3.2@aar'
-    // compile 'org.nanohttpd:nanohttpd:2.3.0'
-    // compile 'org.bouncycastle:bcprov-jdk15on:1.54'
-    // compile 'io.reactivex:rxandroid:1.1.0'
-    // compile 'io.reactivex:rxkotlin:0.55.0'
-    // compile 'io.reactivex:rxjava:1.1.2'
+    compile "net.rdrei.android.dirchooser:library:$DIRCHOOSER_VERSION@aar"
+    compile "org.greenrobot:eventbus:$EVENT_BUS_VERSION"
+    compile "org.slf4j:slf4j-android:$SLF4J_ANDROID_VERSION"
+    compile "com.google.code.gson:gson:$GSON_VERSION"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
     compile "com.android.support:design:$ANDROID_SUPPORT_VERSION"
     compile "com.android.support:preference-v14:$ANDROID_SUPPORT_VERSION"
@@ -136,5 +136,3 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     kapt "com.android.databinding:compiler:$ANDROID_GRADLE_VERSION"
 }
-
-
